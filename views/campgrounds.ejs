@@ -1,0 +1,17 @@
+<h1>This is the campgrounds page!</h1>
+
+<table>
+    <thead>
+        <td>Name</td>
+        <td>Image</td>
+    </thead>
+    <tbody>
+        <% camps.forEach(function(camp){ %>
+            <tr>
+                <td><%= camp.name %></td>
+                <td><img src=<%= camp.img %> alt="Campground picture" style="height:200px;"></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<a href="/">Home</a>

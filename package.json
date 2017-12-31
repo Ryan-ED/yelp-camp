@@ -1,0 +1,33 @@
+{
+  "name": "yelp-camp",
+  "version": "1.0.0",
+  "description": "A \"Yelp\" like web application for camping grounds. Based on the Yelp Camp project at the end of \"The Web Developer Bootcamp\" on Udemy",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryan-ED/yelp-camp.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "udemy-tutorial",
+    "full-stack",
+    "javascript",
+    "html",
+    "css",
+    "mongodb"
+  ],
+  "author": "RyanED",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryan-ED/yelp-camp/issues"
+  },
+  "homepage": "https://github.com/Ryan-ED/yelp-camp#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}
