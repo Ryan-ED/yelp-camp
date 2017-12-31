@@ -12,7 +12,13 @@ app.get('/', function(req, res) {
 var camps = [
     {name: "Wye Valley Camping", img: "http://www.photosforclass.com/download/7121861565"},
     {name: "Granite Hill", img: "http://www.photosforclass.com/download/1342367857"},    
-    {name: "Jenny Lake Camp", img: "https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg"}  
+    {name: "Jenny Lake Camp", img: "https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg"},  
+    {name: "Wye Valley Camping", img: "http://www.photosforclass.com/download/7121861565"},
+    {name: "Granite Hill", img: "http://www.photosforclass.com/download/1342367857"},    
+    {name: "Jenny Lake Camp", img: "https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg"},
+    {name: "Wye Valley Camping", img: "http://www.photosforclass.com/download/7121861565"},
+    {name: "Granite Hill", img: "http://www.photosforclass.com/download/1342367857"},    
+    {name: "Jenny Lake Camp", img: "https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg"}
 ];
 
 app.get('/campgrounds', function(req, res) {
