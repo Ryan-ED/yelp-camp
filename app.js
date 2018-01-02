@@ -7,7 +7,8 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 var campSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 var Campground = mongoose.model("Campground", campSchema);
@@ -19,6 +20,7 @@ app.get('/', function(req, res) {
     res.render("landing");
 });
 
+//INDEX - Show all camps
 app.get('/campgrounds', function(req, res) {
     //Get all campgrounds from DB
     Campground.find({}, function(err, camps){
@@ -26,18 +28,26 @@ app.get('/campgrounds', function(req, res) {
             console.log(err);
         }
         else {
-            res.render("campgrounds", {camps: camps});
+            res.render("index", {camps: camps});
         }
     });
 });
 
+// Campground.create({
+//     name: "Jenny Lake Camp",
+//     image: "http://www.photosforclass.com/download/1430198323",
+//     description: "Beautiful view of a hill and a yellow tent. These people are luck to be there! I love camping..."
+// });
+
+//CREATE - Add new camp
 app.post('/campgrounds', function(req, res) {
-    var name = req.body.name;
-    var image = req.body.image;
-    Campground.create({
-        name: name, 
-        image: image
-    }, function(err, camp){
+
+    var campObj = {
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description
+    }
+    Campground.create(campObj, function(err, camp){
         if(err){
             console.log(err);
         }
@@ -47,8 +57,22 @@ app.post('/campgrounds', function(req, res) {
     });
 });
 
+//NEW - Show form to create new camp
 app.get('/campgrounds/new', function(req, res) {
-    res.render("new.ejs");
+    res.render("new");
+});
+
+//SHOW - Show info about a single camp
+app.get('/campgrounds/:id', function(req, res) {
+    //Find the campground with :id
+    Campground.findById(req.params.id, function(err, camp){
+        if(err){
+            console.log(err);
+        }
+        else {
+            res.render("show", {camp: camp});
+        }
+    });
 });
 
 app.listen(3000, function() {
