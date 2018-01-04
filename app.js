@@ -2,16 +2,13 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Campground = require("./models/campground");
+var seedDB = require("./seeds");
+
+seedDB();
+
 
 mongoose.connect("mongodb://localhost/yelp_camp");
-
-var campSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground", campSchema);
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -32,12 +29,6 @@ app.get('/campgrounds', function(req, res) {
         }
     });
 });
-
-// Campground.create({
-//     name: "Jenny Lake Camp",
-//     image: "http://www.photosforclass.com/download/1430198323",
-//     description: "Beautiful view of a hill and a yellow tent. These people are luck to be there! I love camping..."
-// });
 
 //CREATE - Add new camp
 app.post('/campgrounds', function(req, res) {
