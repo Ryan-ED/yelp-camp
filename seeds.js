@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Campground = require("./models/campground");
+var Comment = require("./models/comment");
 
 var data = [
     {
@@ -61,6 +62,19 @@ function seedDB(){
                     }
                     else {
                         console.log("CAMPGROUND ADDED");
+                        Comment.create({
+                            text: "This place is amazing but... Where the WiFi at bruhh?",
+                            author: "Viner"
+                        }, function(err, comment){
+                            if(err){
+                                console.log(err);
+                            }
+                            else {
+                                camp.comments.push(comment);
+                                camp.save();
+                                console.log("COMMENT CREATED");
+                            }
+                        });
                     }
                 });
             });
