@@ -4,7 +4,7 @@
 <img src="<%= camp.image %>" alt="Campground">
 <p><%= camp.description %></p>
 
-<% forEach camp.comments(function(comment){ %>
+<% camp.comments.forEach(function(comment){ %>
 
     <p><strong><%= comment.author %></strong> - <%= comment.text %></p>
 

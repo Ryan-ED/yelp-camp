@@ -70,8 +70,10 @@ function seedDB(){
                                 console.log(err);
                             }
                             else {
-                                camp.comments.push(comment);
-                                camp.save();
+                                //Push comments to the campground that is actually being created (data), 
+                                //the (camp) variable is an object in the array. There is no comments key in there
+                                data.comments.push(comment);
+                                data.save();
                                 console.log("COMMENT CREATED");
                             }
                         });
