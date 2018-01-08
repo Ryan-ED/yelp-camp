@@ -47,8 +47,13 @@ app.get('/campgrounds', function(req, res) {
     });
 });
 
+//NEW - Show form to create new camp
+app.get('/campgrounds/new', isLoggedIn, function(req, res) {
+    res.render("campgrounds/new");
+});
+
 //CREATE - Add new camp
-app.post('/campgrounds', function(req, res) {
+app.post('/campgrounds', isLoggedIn, function(req, res) {
 
     var campObj = {
         name: req.body.name,
@@ -63,11 +68,6 @@ app.post('/campgrounds', function(req, res) {
             res.redirect("/campgrounds");
         }
     });
-});
-
-//NEW - Show form to create new camp
-app.get('/campgrounds/new', function(req, res) {
-    res.render("campgrounds/new");
 });
 
 //SHOW - Show info about a single camp
@@ -89,7 +89,7 @@ app.get('/campgrounds/:id', function(req, res) {
 //=======================
 
 //NEW
-app.get('/campgrounds/:id/comments/new', function(req, res) {
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function(err, camp){
         if(err){
             console.log(err);
@@ -101,7 +101,7 @@ app.get('/campgrounds/:id/comments/new', function(req, res) {
 });
 
 //CREATE
-app.post('/campgrounds/:id/comments', function(req, res) {
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function(err, camp){
         if(err){
             console.log(err);
@@ -126,6 +126,8 @@ app.post('/campgrounds/:id/comments', function(req, res) {
 //=======================
 //AUTH ROUTES
 //=======================
+
+//Register
 app.get('/register', function(req, res) {
     res.render("register");
 });
@@ -143,13 +145,34 @@ app.post('/register', function(req, res) {
     })
 });
 
+//Login
 app.get('/login', function(req, res) {
     res.render("login");
 });
 
-app.post('/login', function(req, res) {
-    res.send("Logging you in...");
+app.post('/login', passport.authenticate("local", 
+    {
+        successRedirect: "/campgrounds",
+        failureRedirect: "/login"
+    }), function(req, res) {
+    
 });
+
+//Logout
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+//===============================
+//MIDDLEWARE
+//===============================
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen(3000, function() {
     console.log('App listening on port 3000!');
