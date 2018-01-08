@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var localStrategy = require("passport-local");
+var methodOverride = require("method-override");
 
 var Campground = require("./models/campground");
 var Comment = require("./models/comment");
@@ -38,11 +39,14 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
     res.locals.user = req.user;
     next();
-})
+});
+
+app.use(methodOverride("_method"));
 
 app.use(indexRoutes);
 app.use("/campgrounds", campRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+
 
 app.listen(3000, function() {
     console.log('App listening on port 3000!');

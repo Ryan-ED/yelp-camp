@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+<div class="container text-center">
+    <h1>Edit <%= camp.name %></h1>
+    <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="post" class="form-horizontal forms">
+        <div class="form-group">
+            <input class="form-control" type="text" name="camp[name]" value="<%= camp.name %>" placeholder="Name of camp">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="url" name="camp[image]" value="<%= camp.image %>" placeholder="Image URL">            
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="camp[description]" value="<%= camp.description %>" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary btn-block" type="submit" value="Update!">
+        </div>
+    </form>
+
+    <a href="/campgrounds/<%= camp._id %>">Go Back</a>
+</div>
+
+<% include ../partials/footer %>
