@@ -36,6 +36,7 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//Make the current user available to all templates
 app.use(function(req, res, next){
     res.locals.user = req.user;
     next();
