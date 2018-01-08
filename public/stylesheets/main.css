@@ -2,6 +2,11 @@
     width: 100%;
 }
 
-.thumbnail {
-    padding: 0;
+#delete-form {
+    display: inline;
+}
+
+.forms {
+    margin: 30px auto; 
+    width:30%;
 }
