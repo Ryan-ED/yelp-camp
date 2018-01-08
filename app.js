@@ -17,7 +17,7 @@ var indexRoutes = require("./routes/index");
 
 mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
 mongoose.Promise = global.Promise;
-seedDB();
+// seedDB();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));

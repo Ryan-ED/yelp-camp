@@ -26,7 +26,11 @@ router.post('/', isLoggedIn, function(req, res) {
     var campObj = {
         name: req.body.name,
         image: req.body.image,
-        description: req.body.description
+        description: req.body.description,
+        author: {
+            id: req.user._id,
+            username: req.user.username
+        }
     }
     Campground.create(campObj, function(err, camp){
         if(err){

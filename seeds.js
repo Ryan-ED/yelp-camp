@@ -54,32 +54,32 @@ function seedDB(){
         else {
             console.log("REMOVED ALL CAMPGROUNDS");
 
-            // Add some campgrounds
-            data.forEach(function(camp){
-                Campground.create(camp, function(err, data){
-                    if(err){
-                        console.log(err);
-                    }
-                    else {
-                        console.log("CAMPGROUND ADDED");
-                        Comment.create({
-                            text: "This place is amazing but... Where the WiFi at bruhh?",
-                            author: "Viner"
-                        }, function(err, comment){
-                            if(err){
-                                console.log(err);
-                            }
-                            else {
-                                //Push comments to the campground that is actually being created (data), 
-                                //the (camp) variable is an object in the array. There is no comments key in there
-                                data.comments.push(comment);
-                                data.save();
-                                console.log("COMMENT CREATED");
-                            }
-                        });
-                    }
-                });
-            });
+            // // Add some campgrounds
+            // data.forEach(function(camp){
+            //     Campground.create(camp, function(err, data){
+            //         if(err){
+            //             console.log(err);
+            //         }
+            //         else {
+            //             console.log("CAMPGROUND ADDED");
+            //             Comment.create({
+            //                 text: "This place is amazing but... Where the WiFi at bruhh?",
+            //                 author: "Viner"
+            //             }, function(err, comment){
+            //                 if(err){
+            //                     console.log(err);
+            //                 }
+            //                 else {
+            //                     //Push comments to the campground that is actually being created (data), 
+            //                     //the (camp) variable is an object in the array. There is no comments key in there
+            //                     data.comments.push(comment);
+            //                     data.save();
+            //                     console.log("COMMENT CREATED");
+            //                 }
+            //             });
+            //         }
+            //     });
+            // });
         }
     });
 };
