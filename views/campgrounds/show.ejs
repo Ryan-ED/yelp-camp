@@ -13,7 +13,15 @@
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= camp.image %>" alt="Campground">
                 <div class="caption">
-                    <h4 class="pull-right">$9.00 a night</h4>
+                    <h4 class="pull-right">
+                        <% if(!camp.price){ %>
+                            No price specified
+                        <% } else if(camp.price == 0){ %>
+                            Free
+                        <% } else { %>
+                            $<%= camp.price %> per night
+                        <% } %>
+                    </h4>
                     <h4><a href=""><%= camp.name %></a></h4>
                     <p><%= camp.description %></p>
                     <p><em>Submitted by <%= camp.author.username %></em></p>
