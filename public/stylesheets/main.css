@@ -2,9 +2,17 @@ html {
     position: relative;
     min-height: 100%;
 }
-  body {
+
+body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+}
+
+#camp-index {
+    display:flex; 
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .thumbnail img {
